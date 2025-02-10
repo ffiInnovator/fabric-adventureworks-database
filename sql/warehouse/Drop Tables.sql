@@ -1,0 +1,31 @@
+-- ******************************************************
+-- Drop tables
+-- ******************************************************
+DROP TABLE [dbo].[DimAccount];
+DROP TABLE [dbo].[DimCurrency];
+DROP TABLE [dbo].[DimCustomer];
+DROP TABLE [dbo].[DimDate];
+DROP TABLE [dbo].[DimDepartmentGroup];
+DROP TABLE [dbo].[DimEmployee];
+DROP TABLE [dbo].[DimGeography];
+DROP TABLE [dbo].[DimOrganization];
+DROP TABLE [dbo].[DimProduct];
+DROP TABLE [dbo].[DimProductCategory];
+DROP TABLE [dbo].[DimProductSubcategory];
+DROP TABLE [dbo].[DimPromotion];
+DROP TABLE [dbo].[DimReseller];
+DROP TABLE [dbo].[DimSalesReason];
+DROP TABLE [dbo].[DimSalesTerritory];
+DROP TABLE [dbo].[DimScenario];
+DROP TABLE [dbo].[FactAdditionalInternationalProductDescription];
+DROP TABLE [dbo].[FactCallCenter];
+DROP TABLE [dbo].[FactCurrencyRate];
+DROP TABLE [dbo].[FactFinance];
+DROP TABLE [dbo].[FactInternetSales];
+DROP TABLE [dbo].[FactInternetSalesReason];
+DROP TABLE [dbo].[FactProductInventory];
+DROP TABLE [dbo].[FactResellerSales];
+DROP TABLE [dbo].[FactSalesQuota];
+DROP TABLE [dbo].[FactSurveyResponse];
+DROP TABLE [dbo].[NewFactCurrencyRate];
+DROP TABLE [dbo].[ProspectiveBuyer];

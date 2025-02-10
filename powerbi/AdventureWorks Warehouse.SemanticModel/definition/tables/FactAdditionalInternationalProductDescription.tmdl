@@ -1,0 +1,37 @@
+table FactAdditionalInternationalProductDescription
+	lineageTag: 9260300f-fa07-4d23-856f-6d030ed1a4a0
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1cb47f0f-aa3a-4101-b805-44731dda0f1a
+		summarizeBy: count
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CultureName
+		dataType: string
+		lineageTag: d72cb81b-0874-4317-be63-bf86002e9567
+		summarizeBy: none
+		sourceColumn: CultureName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductDescription
+		dataType: string
+		lineageTag: 2a719302-cd0c-4ea5-a182-e0884f2b6c09
+		summarizeBy: none
+		sourceColumn: ProductDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactAdditionalInternationalProductDescription = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("znbjxinpfs5u3cxz7s7bppllcq-ilhmootuvz6u5cwdltudlcrq34.datawarehouse.fabric.microsoft.com", "AdventureWorks_Warehouse"),
+				    dbo_FactAdditionalInternationalProductDescription = Source{[Schema="dbo",Item="FactAdditionalInternationalProductDescription"]}[Data]
+				in
+				    dbo_FactAdditionalInternationalProductDescription
+

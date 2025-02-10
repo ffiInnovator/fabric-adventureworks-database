@@ -1,0 +1,361 @@
+relationship 14a70d2f-969f-41dd-afc3-e9da91a89f28
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimCustomer.BirthDate
+	toColumn: LocalDateTable_f5b7ab37-138e-4fab-903f-10274fb2d057.Date
+
+relationship dfdc64ff-d43e-446e-9738-f38540fcdb43
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimCustomer.DateFirstPurchase
+	toColumn: LocalDateTable_e79dfed6-7128-4a0d-b55b-679397718444.Date
+
+relationship d5ffaa06-05be-44a7-ab08-74905d8a3612
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.FullDateAlternateKey
+	toColumn: LocalDateTable_d8974c11-0333-4a89-b946-602ca76d4bfd.Date
+
+relationship 400e720c-2519-4b8e-839a-b7b1aeb6a212
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimEmployee.HireDate
+	toColumn: LocalDateTable_ebf8e975-cda0-4cc8-b096-adc979c5db17.Date
+
+relationship 8503cf25-fb16-4a73-a672-c89b636907bf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimEmployee.BirthDate
+	toColumn: LocalDateTable_0dffd02f-0055-43e2-9e7f-830a11bfacaa.Date
+
+relationship f87822b6-08de-4fdd-872d-9dd813bfb6bd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimEmployee.StartDate
+	toColumn: LocalDateTable_b616022e-f7aa-47b1-ae91-fde7b642a5a0.Date
+
+relationship eca611d9-d0fe-4582-8b31-2281c31c7609
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimEmployee.EndDate
+	toColumn: LocalDateTable_f916187c-a4e3-47e5-b8af-19cb2af08978.Date
+
+relationship 7c68c03c-1881-47f6-8c94-b3cfe72c06eb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimProduct.StartDate
+	toColumn: LocalDateTable_69a6f490-6f1c-4e20-b646-e84faa4c8ba6.Date
+
+relationship 065fde01-c4ce-45de-bd1e-b660ea964dfc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimProduct.EndDate
+	toColumn: LocalDateTable_79d1d374-d602-4595-9278-4294b113da61.Date
+
+relationship 5ae2b99b-7352-48e8-9b78-27bccbeb3671
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimPromotion.StartDate
+	toColumn: LocalDateTable_dd0e1b3e-29ff-43fb-bdd4-4fae2029ec66.Date
+
+relationship 9248c907-ad23-4206-a85f-eb4ad766e76a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimPromotion.EndDate
+	toColumn: LocalDateTable_d3da596d-2be9-42e4-b337-106993f75116.Date
+
+relationship 555b7aae-e198-4d3e-8b19-8c0fca4fe79c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactCallCenter.Date
+	toColumn: LocalDateTable_1a7a74c8-520f-4142-9fb7-96654c3b6065.Date
+
+relationship 0c227bf2-3c97-4270-8129-7ab8d2a7c2dc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactCurrencyRate.Date
+	toColumn: LocalDateTable_b5a7c3d9-281a-483a-a75b-466b32f35922.Date
+
+relationship 404f62cc-2105-43fc-bb2e-e713310318bb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactFinance.Date
+	toColumn: LocalDateTable_334c0cd7-fb9a-4160-be37-8e7b137e0856.Date
+
+relationship b88f1f49-3473-4d48-953d-4d2e08af9559
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactInternetSales.OrderDate
+	toColumn: LocalDateTable_768ee508-85c4-4cca-8f9f-03199aea5fa4.Date
+
+relationship c7718e6e-92e7-4669-9cec-5d42acc4b4de
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactInternetSales.DueDate
+	toColumn: LocalDateTable_73c13926-6136-44d1-ab7e-fc2a19800ab1.Date
+
+relationship 00d8713b-5499-467c-ba9f-b74b46093d7f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactInternetSales.ShipDate
+	toColumn: LocalDateTable_8da8b6d2-78bc-46f9-9ee2-d8d01a34fc0b.Date
+
+relationship dafc07fe-c8d0-4b88-8004-6609717e7fba
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactProductInventory.MovementDate
+	toColumn: LocalDateTable_77030390-fa08-4947-9e99-86ffc70014a0.Date
+
+relationship 960de0ec-e997-4663-8449-d09f311d5ed5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactResellerSales.OrderDate
+	toColumn: LocalDateTable_180c47c0-1a1a-46d5-bf8e-c3fecdcb4e90.Date
+
+relationship 49ec224e-0fed-43ba-8648-70e80b34c5f5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactResellerSales.DueDate
+	toColumn: LocalDateTable_9300f269-ac10-436c-b5b4-60d99aa8d124.Date
+
+relationship 60b5608e-8585-499d-9bae-d44cb5723699
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactResellerSales.ShipDate
+	toColumn: LocalDateTable_c9acec9d-12c3-43e9-9e4c-cd2cf7ec98c6.Date
+
+relationship 42fa9fe9-9bf3-46e0-a984-6e9306c981c1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactSalesQuota.Date
+	toColumn: LocalDateTable_d380d870-ac5a-4a0e-8d86-5047b810ef52.Date
+
+relationship b379c90b-fae0-4ffd-8eab-7a8d6601fe55
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactSurveyResponse.Date
+	toColumn: LocalDateTable_abefc8cc-a147-41ec-af01-e74d9998e6fa.Date
+
+relationship f08339bb-02eb-4035-94c4-faa3c31d07db
+	joinOnDateBehavior: datePartOnly
+	fromColumn: NewFactCurrencyRate.CurrencyDate
+	toColumn: LocalDateTable_46768363-ff31-4efa-b483-6ca4a13b2b00.Date
+
+relationship b6cb1061-a7b1-402e-b85f-6b5716cdcffc
+	fromColumn: DimCustomer.GeographyKey
+	toColumn: DimGeography.GeographyKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship fc76214e-9cbb-487e-a115-9e15ec913c0c
+	fromColumn: DimEmployee.SalesTerritoryKey
+	toColumn: DimSalesTerritory.SalesTerritoryKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 01f2eab9-9c70-4e13-a9af-4613f95f508d
+	fromColumn: DimGeography.SalesTerritoryKey
+	toColumn: DimSalesTerritory.SalesTerritoryKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 3663c33d-77d9-4292-a7bf-ca2fa7d59bfc
+	fromColumn: DimOrganization.CurrencyKey
+	toColumn: DimCurrency.CurrencyKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship aef9f5a1-2eef-4774-bc6d-3628a2a9fd63
+	fromColumn: DimProduct.ProductSubcategoryKey
+	toColumn: DimProductSubcategory.ProductSubcategoryKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship de33a645-ce78-43a5-8d07-dde5c58f3f16
+	fromColumn: DimProductSubcategory.ProductCategoryKey
+	toColumn: DimProductCategory.ProductCategoryKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship e4f27f9c-7876-48fc-b42e-d0900cf1fea5
+	fromColumn: DimReseller.GeographyKey
+	toColumn: DimGeography.GeographyKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 7723b7d0-2d7e-42c3-8e62-12bfebd18d4b
+	fromColumn: FactCallCenter.DateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 0fcd22a5-770a-472d-8e2a-7362e70666cc
+	fromColumn: FactCurrencyRate.CurrencyKey
+	toColumn: DimCurrency.CurrencyKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship da992d33-c41c-4bf5-bfbe-2d23d5fee2b1
+	fromColumn: FactCurrencyRate.DateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 6d925c0a-4882-4f43-8090-ea71089ec95d
+	fromColumn: FactFinance.AccountKey
+	toColumn: DimAccount.AccountKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship f58959c9-e7de-49a6-9850-4fcce2a609e0
+	fromColumn: FactFinance.DateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 5825f68e-25bb-4c44-9975-1d1c96000847
+	fromColumn: FactFinance.DepartmentGroupKey
+	toColumn: DimDepartmentGroup.DepartmentGroupKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship e35941de-125e-4f7a-b974-2aa5891fd0ee
+	fromColumn: FactFinance.OrganizationKey
+	toColumn: DimOrganization.OrganizationKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship e78f06a8-bfa8-4d18-adbb-f91785fc6326
+	fromColumn: FactFinance.ScenarioKey
+	toColumn: DimScenario.ScenarioKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship d69be16a-d4e3-4e23-8366-13ad8ccc22b2
+	fromColumn: FactInternetSales.CurrencyKey
+	toColumn: DimCurrency.CurrencyKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 294a7260-17ac-408f-9b79-cdcb892755dc
+	fromColumn: FactInternetSales.CustomerKey
+	toColumn: DimCustomer.CustomerKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 78b7e249-2841-4745-8d48-0d80a25e212f
+	fromColumn: FactInternetSales.DueDateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship a510d800-fd0d-4ce3-b95d-aabcd8426188
+	isActive: false
+	fromColumn: FactInternetSales.OrderDateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 93535ab4-9e15-49cd-a70d-f2a48a97b396
+	isActive: false
+	fromColumn: FactInternetSales.ShipDateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 1d77140c-84a2-4692-9c54-5d4db0f7a18a
+	fromColumn: FactInternetSales.ProductKey
+	toColumn: DimProduct.ProductKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship e5829f0d-5e7d-47a8-935c-9ee2c4e54982
+	fromColumn: FactInternetSales.PromotionKey
+	toColumn: DimPromotion.PromotionKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship fb63601b-f0ea-40ed-bef0-41836db1926d
+	isActive: false
+	fromColumn: FactInternetSales.SalesTerritoryKey
+	toColumn: DimSalesTerritory.SalesTerritoryKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 36a423fb-0c99-4dbd-ad21-c66156642271
+	fromColumn: FactInternetSalesReason.SalesReasonKey
+	toColumn: DimSalesReason.SalesReasonKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship c985696c-8f16-47c3-b28f-87f9d797214b
+	fromColumn: FactProductInventory.DateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 3f457154-969e-400d-9e13-ada5f72118f3
+	fromColumn: FactProductInventory.ProductKey
+	toColumn: DimProduct.ProductKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 3b54ad34-11f4-4a3c-b553-7af083bd8751
+	fromColumn: FactResellerSales.CurrencyKey
+	toColumn: DimCurrency.CurrencyKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 70737365-e24b-412d-86ac-9ae0b3bfd30c
+	fromColumn: FactResellerSales.DueDateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 7a295d1c-d3dc-47a1-b487-fdbb4a1ff59a
+	isActive: false
+	fromColumn: FactResellerSales.OrderDateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 497ed3af-81de-4b5e-9c6c-da1f8a649cfe
+	isActive: false
+	fromColumn: FactResellerSales.ShipDateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 7ebe8dd0-d767-4579-bc00-77d04707382b
+	fromColumn: FactResellerSales.EmployeeKey
+	toColumn: DimEmployee.EmployeeKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 88d6d902-9761-401e-99d8-e7e68433da29
+	fromColumn: FactResellerSales.ProductKey
+	toColumn: DimProduct.ProductKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 67071710-d70d-40ab-acee-5615de3a5493
+	fromColumn: FactResellerSales.PromotionKey
+	toColumn: DimPromotion.PromotionKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship dc9e8f2a-6c3c-4f4d-abc9-73d6c1b36cae
+	isActive: false
+	fromColumn: FactResellerSales.ResellerKey
+	toColumn: DimReseller.ResellerKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 0782a9a4-a0bb-4804-b101-8f5eb2b06c72
+	isActive: false
+	fromColumn: FactResellerSales.SalesTerritoryKey
+	toColumn: DimSalesTerritory.SalesTerritoryKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 1190d071-9a7a-4bd8-8984-4ec1fdb509b0
+	fromColumn: FactSalesQuota.DateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship aae4bd90-0c53-4185-8648-a51e90218f0d
+	fromColumn: FactSalesQuota.EmployeeKey
+	toColumn: DimEmployee.EmployeeKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 451bc8e5-88c5-4f5c-95af-22116a3fc8cb
+	fromColumn: FactSurveyResponse.CustomerKey
+	toColumn: DimCustomer.CustomerKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 94613086-00e9-4a4c-bd76-0225c29c6723
+	fromColumn: FactSurveyResponse.DateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+

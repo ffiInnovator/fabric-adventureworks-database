@@ -1,0 +1,90 @@
+table FactFinance
+	lineageTag: 8ee9f0cd-bc5a-4b84-aa84-9524984620ab
+
+	column FinanceKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b051cb39-3411-4152-80c6-b95b69634e4d
+		summarizeBy: count
+		sourceColumn: FinanceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b116a630-3795-41c9-bd88-73462e067ee5
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrganizationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 29851962-3e80-42c2-855f-aab6149cd0c3
+		summarizeBy: none
+		sourceColumn: OrganizationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentGroupKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1029a3d8-d731-4012-adda-126f30e2b13f
+		summarizeBy: none
+		sourceColumn: DepartmentGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a92c080-a16c-41e5-b9c6-eb59ee89bc17
+		summarizeBy: none
+		sourceColumn: ScenarioKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 45942b5f-da4b-4059-9fe8-3f8eea4bad38
+		summarizeBy: none
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: double
+		lineageTag: a86da674-678e-4342-a3fd-7320fc7dbb69
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b00de78c-61fc-4acd-8b42-e4599a5c3066
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 404f62cc-2105-43fc-bb2e-e713310318bb
+			defaultHierarchy: LocalDateTable_334c0cd7-fb9a-4160-be37-8e7b137e0856.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactFinance = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("znbjxinpfs5u3cxz7s7bppllcq-ilhmootuvz6u5cwdltudlcrq34.datawarehouse.fabric.microsoft.com", "AdventureWorks_Warehouse"),
+				    dbo_FactFinance = Source{[Schema="dbo",Item="FactFinance"]}[Data]
+				in
+				    dbo_FactFinance
+

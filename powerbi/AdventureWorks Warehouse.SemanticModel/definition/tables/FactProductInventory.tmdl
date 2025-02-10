@@ -1,0 +1,83 @@
+table FactProductInventory
+	lineageTag: 76a804f0-9464-4fe6-aca8-7f5e4417e284
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e14be09c-0abe-4380-83cb-7ea22f62debd
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f7762820-6e84-491a-9f25-5934dc17d86e
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MovementDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fd091195-d9a7-472e-9219-448368f05036
+		summarizeBy: none
+		sourceColumn: MovementDate
+
+		variation Variation
+			isDefault
+			relationship: dafc07fe-c8d0-4b88-8004-6609717e7fba
+			defaultHierarchy: LocalDateTable_77030390-fa08-4947-9e99-86ffc70014a0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column UnitCost
+		dataType: double
+		lineageTag: 9caaad7b-37f4-4bd4-a09f-1a118175ee29
+		summarizeBy: sum
+		sourceColumn: UnitCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column UnitsIn
+		dataType: int64
+		formatString: 0
+		lineageTag: 555d8d21-715f-4f23-b22d-7730c011bd4f
+		summarizeBy: sum
+		sourceColumn: UnitsIn
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitsOut
+		dataType: int64
+		formatString: 0
+		lineageTag: 4313bf4e-76a9-4b29-92dc-a61d8a5a8d1e
+		summarizeBy: sum
+		sourceColumn: UnitsOut
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitsBalance
+		dataType: int64
+		formatString: 0
+		lineageTag: bc6239d8-a607-4c69-b1f2-300caff2c50f
+		summarizeBy: sum
+		sourceColumn: UnitsBalance
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactProductInventory = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("znbjxinpfs5u3cxz7s7bppllcq-ilhmootuvz6u5cwdltudlcrq34.datawarehouse.fabric.microsoft.com", "AdventureWorks_Warehouse"),
+				    dbo_FactProductInventory = Source{[Schema="dbo",Item="FactProductInventory"]}[Data]
+				in
+				    dbo_FactProductInventory
+

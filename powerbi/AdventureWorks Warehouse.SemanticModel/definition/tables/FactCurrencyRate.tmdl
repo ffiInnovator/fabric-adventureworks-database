@@ -1,0 +1,64 @@
+table FactCurrencyRate
+	lineageTag: 260a4894-0be1-4563-9b2a-12c6220781e1
+
+	column CurrencyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: a002d213-4041-41a5-a6fa-c86557b15ee3
+		summarizeBy: none
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 16b70ea9-e643-46e1-916a-3dc19b29aa21
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AverageRate
+		dataType: double
+		lineageTag: d32565d4-113e-4925-9401-d834b678cd62
+		summarizeBy: sum
+		sourceColumn: AverageRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EndOfDayRate
+		dataType: double
+		lineageTag: cc995966-03bc-4275-804c-c600879474e2
+		summarizeBy: sum
+		sourceColumn: EndOfDayRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8f87fffb-1ba7-498e-9a78-11f4051e4e68
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 0c227bf2-3c97-4270-8129-7ab8d2a7c2dc
+			defaultHierarchy: LocalDateTable_b5a7c3d9-281a-483a-a75b-466b32f35922.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactCurrencyRate = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("znbjxinpfs5u3cxz7s7bppllcq-ilhmootuvz6u5cwdltudlcrq34.datawarehouse.fabric.microsoft.com", "AdventureWorks_Warehouse"),
+				    dbo_FactCurrencyRate = Source{[Schema="dbo",Item="FactCurrencyRate"]}[Data]
+				in
+				    dbo_FactCurrencyRate
+

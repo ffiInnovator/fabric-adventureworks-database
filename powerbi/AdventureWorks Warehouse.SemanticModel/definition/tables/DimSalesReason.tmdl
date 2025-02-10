@@ -1,0 +1,46 @@
+table DimSalesReason
+	lineageTag: c4430a1a-c4cf-4e83-b089-5bee52fe9cc4
+
+	column SalesReasonKey
+		dataType: int64
+		formatString: 0
+		lineageTag: dff342df-3bd8-4f56-865f-5eceed5ef2a0
+		summarizeBy: none
+		sourceColumn: SalesReasonKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesReasonAlternateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f59104fa-ab5e-4b33-8a3d-0996cb399445
+		summarizeBy: none
+		sourceColumn: SalesReasonAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesReasonName
+		dataType: string
+		lineageTag: 40f77f71-5fb7-4e23-80df-b3d8d23ae877
+		summarizeBy: none
+		sourceColumn: SalesReasonName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesReasonReasonType
+		dataType: string
+		lineageTag: da6592db-10c0-4572-880a-d778a981d222
+		summarizeBy: none
+		sourceColumn: SalesReasonReasonType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSalesReason = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("znbjxinpfs5u3cxz7s7bppllcq-ilhmootuvz6u5cwdltudlcrq34.datawarehouse.fabric.microsoft.com", "AdventureWorks_Warehouse"),
+				    dbo_DimSalesReason = Source{[Schema="dbo",Item="DimSalesReason"]}[Data]
+				in
+				    dbo_DimSalesReason
+

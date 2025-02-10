@@ -1,0 +1,314 @@
+relationship FK_DimAccount_DimAccount
+    crossFilteringBehavior: oneDirection
+    fromColumn: DimAccount.ParentAccountKey
+    toColumn: DimAccount.AccountKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_DimCustomer_DimGeography
+    crossFilteringBehavior: oneDirection
+    fromColumn: DimCustomer.GeographyKey
+    toColumn: DimGeography.GeographyKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_DimDepartmentGroup_DimDepartmentGroup
+    crossFilteringBehavior: oneDirection
+    fromColumn: DimDepartmentGroup.ParentDepartmentGroupKey
+    toColumn: DimDepartmentGroup.DepartmentGroupKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_DimEmployee_DimEmployee
+    crossFilteringBehavior: oneDirection
+    fromColumn: DimEmployee.ParentEmployeeKey
+    toColumn: DimEmployee.EmployeeKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_DimEmployee_DimSalesTerritory
+    crossFilteringBehavior: oneDirection
+    fromColumn: DimEmployee.SalesTerritoryKey
+    toColumn: DimSalesTerritory.SalesTerritoryKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_DimGeography_DimSalesTerritory
+    crossFilteringBehavior: oneDirection
+    fromColumn: DimGeography.SalesTerritoryKey
+    toColumn: DimSalesTerritory.SalesTerritoryKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_DimOrganization_DimCurrency
+    crossFilteringBehavior: oneDirection
+    fromColumn: DimOrganization.CurrencyKey
+    toColumn: DimCurrency.CurrencyKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_DimOrganization_DimOrganization
+    crossFilteringBehavior: oneDirection
+    fromColumn: DimOrganization.ParentOrganizationKey
+    toColumn: DimOrganization.OrganizationKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_DimProductSubcategory_DimProductCategory
+    crossFilteringBehavior: oneDirection
+    fromColumn: DimProductSubcategory.ProductCategoryKey
+    toColumn: DimProductCategory.ProductCategoryKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_DimProduct_DimProductSubcategory
+    crossFilteringBehavior: oneDirection
+    fromColumn: DimProduct.ProductSubcategoryKey
+    toColumn: DimProductSubcategory.ProductSubcategoryKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_DimReseller_DimGeography
+    crossFilteringBehavior: oneDirection
+    fromColumn: DimReseller.GeographyKey
+    toColumn: DimGeography.GeographyKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactCallCenter_DimDate
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactCallCenter.DateKey
+    toColumn: DimDate.DateKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactCurrencyRate_DimCurrency
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactCurrencyRate.CurrencyKey
+    toColumn: DimCurrency.CurrencyKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactCurrencyRate_DimDate
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactCurrencyRate.DateKey
+    toColumn: DimDate.DateKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactFinance_DimAccount
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactFinance.AccountKey
+    toColumn: DimAccount.AccountKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactFinance_DimDate
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactFinance.DateKey
+    toColumn: DimDate.DateKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactFinance_DimDepartmentGroup
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactFinance.DepartmentGroupKey
+    toColumn: DimDepartmentGroup.DepartmentGroupKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactFinance_DimOrganization
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactFinance.OrganizationKey
+    toColumn: DimOrganization.OrganizationKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactFinance_DimScenario
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactFinance.ScenarioKey
+    toColumn: DimScenario.ScenarioKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactInternetSalesReason_DimSalesReason
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactInternetSalesReason.SalesReasonKey
+    toColumn: DimSalesReason.SalesReasonKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactInternetSalesReason_FactInternetSales
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactInternetSalesReason.SalesOrderLineNumber
+    toColumn: FactInternetSales.SalesOrderLineNumber
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactInternetSalesReason_FactInternetSales_2
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactInternetSalesReason.SalesOrderNumber
+    toColumn: FactInternetSales.SalesOrderNumber
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactInternetSales_DimCurrency
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactInternetSales.CurrencyKey
+    toColumn: DimCurrency.CurrencyKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactInternetSales_DimCustomer
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactInternetSales.CustomerKey
+    toColumn: DimCustomer.CustomerKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactInternetSales_DimDate
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactInternetSales.OrderDateKey
+    toColumn: DimDate.DateKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactInternetSales_DimDate1
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactInternetSales.DueDateKey
+    toColumn: DimDate.DateKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactInternetSales_DimDate2
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactInternetSales.ShipDateKey
+    toColumn: DimDate.DateKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactInternetSales_DimProduct
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactInternetSales.ProductKey
+    toColumn: DimProduct.ProductKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactInternetSales_DimPromotion
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactInternetSales.PromotionKey
+    toColumn: DimPromotion.PromotionKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactInternetSales_DimSalesTerritory
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactInternetSales.SalesTerritoryKey
+    toColumn: DimSalesTerritory.SalesTerritoryKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactProductInventory_DimDate
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactProductInventory.DateKey
+    toColumn: DimDate.DateKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactProductInventory_DimProduct
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactProductInventory.ProductKey
+    toColumn: DimProduct.ProductKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactResellerSales_DimCurrency
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactResellerSales.CurrencyKey
+    toColumn: DimCurrency.CurrencyKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactResellerSales_DimDate
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactResellerSales.OrderDateKey
+    toColumn: DimDate.DateKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactResellerSales_DimDate1
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactResellerSales.DueDateKey
+    toColumn: DimDate.DateKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactResellerSales_DimDate2
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactResellerSales.ShipDateKey
+    toColumn: DimDate.DateKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactResellerSales_DimEmployee
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactResellerSales.EmployeeKey
+    toColumn: DimEmployee.EmployeeKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactResellerSales_DimProduct
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactResellerSales.ProductKey
+    toColumn: DimProduct.ProductKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactResellerSales_DimPromotion
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactResellerSales.PromotionKey
+    toColumn: DimPromotion.PromotionKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactResellerSales_DimReseller
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactResellerSales.ResellerKey
+    toColumn: DimReseller.ResellerKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactResellerSales_DimSalesTerritory
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactResellerSales.SalesTerritoryKey
+    toColumn: DimSalesTerritory.SalesTerritoryKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactSalesQuota_DimDate
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactSalesQuota.DateKey
+    toColumn: DimDate.DateKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactSalesQuota_DimEmployee
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactSalesQuota.EmployeeKey
+    toColumn: DimEmployee.EmployeeKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactSurveyResponse_CustomerKey
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactSurveyResponse.CustomerKey
+    toColumn: DimCustomer.CustomerKey
+    fromCardinality: many
+    toCardinality: one
+
+relationship FK_FactSurveyResponse_DateKey
+    crossFilteringBehavior: oneDirection
+    fromColumn: FactSurveyResponse.DateKey
+    toColumn: DimDate.DateKey
+    fromCardinality: many
+    toCardinality: one

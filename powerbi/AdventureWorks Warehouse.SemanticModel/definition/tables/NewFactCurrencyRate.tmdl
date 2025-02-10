@@ -1,0 +1,76 @@
+table NewFactCurrencyRate
+	lineageTag: 79056825-aa46-461f-a34f-378c1dbb1d95
+
+	column AverageRate
+		dataType: double
+		lineageTag: d5fa3c17-2bb5-4fc2-b29e-b9da672cdb9b
+		summarizeBy: sum
+		sourceColumn: AverageRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CurrencyID
+		dataType: string
+		lineageTag: 97e879a7-6dfa-490d-9c95-9e2e63cac20c
+		summarizeBy: none
+		sourceColumn: CurrencyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e81a8c36-9da4-422a-ba0c-643d7966ef4b
+		summarizeBy: none
+		sourceColumn: CurrencyDate
+
+		variation Variation
+			isDefault
+			relationship: f08339bb-02eb-4035-94c4-faa3c31d07db
+			defaultHierarchy: LocalDateTable_46768363-ff31-4efa-b483-6ca4a13b2b00.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EndOfDayRate
+		dataType: double
+		lineageTag: 10a49927-0a2d-4570-ae9e-d02d8f35d703
+		summarizeBy: sum
+		sourceColumn: EndOfDayRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CurrencyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 09192f49-4d14-42ed-9149-f86e74ee6618
+		summarizeBy: count
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f5a222e-05aa-4e7d-bf02-0d64d0e1685e
+		summarizeBy: count
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition NewFactCurrencyRate = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("znbjxinpfs5u3cxz7s7bppllcq-ilhmootuvz6u5cwdltudlcrq34.datawarehouse.fabric.microsoft.com", "AdventureWorks_Warehouse"),
+				    dbo_NewFactCurrencyRate = Source{[Schema="dbo",Item="NewFactCurrencyRate"]}[Data]
+				in
+				    dbo_NewFactCurrencyRate
+
+	annotation PBI_ResultType = Table
+
