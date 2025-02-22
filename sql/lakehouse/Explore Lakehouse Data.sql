@@ -1,4 +1,11 @@
--- column metadata fo a table
+-- table metadata
+SELECT  *
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_SCHEMA = 'dbo'
+    AND TABLE_NAME NOT LIKE 'slv%'
+ORDER BY TABLE_NAME;
+
+-- column metadata for a table
 SELECT *
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE TABLE_NAME = 'dimproduct' AND COLUMN_NAME = 'FinishedGoodsFlag';
