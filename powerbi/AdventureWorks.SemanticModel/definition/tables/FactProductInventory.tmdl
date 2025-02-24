@@ -1,0 +1,84 @@
+table FactProductInventory
+	lineageTag: b1f8c4f3-0b6b-4afa-bacb-28a6a2dfdb7f
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 120e61f4-48be-4371-82da-a5d1c9afb9f6
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1589f0bf-4a02-46cf-afb1-80f6d240e22d
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MovementDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 036eeb90-2513-4af3-b57f-15f8eece9d97
+		summarizeBy: none
+		sourceColumn: MovementDate
+
+		variation Variation
+			isDefault
+			relationship: a328f306-2018-4153-8d09-b7d3425e7077
+			defaultHierarchy: LocalDateTable_95f8be29-1bec-4eec-a701-629de5135b5f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column UnitCost
+		dataType: double
+		lineageTag: 35375b8f-ffef-411b-85eb-2b8230a055d2
+		summarizeBy: sum
+		sourceColumn: UnitCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column UnitsIn
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c930861-e5ee-461f-8416-6dcf652ba5b1
+		summarizeBy: sum
+		sourceColumn: UnitsIn
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitsOut
+		dataType: int64
+		formatString: 0
+		lineageTag: a7df7286-676a-46ba-8ee2-462ecc8af411
+		summarizeBy: sum
+		sourceColumn: UnitsOut
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitsBalance
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ecb2e0b-ed0c-49a2-a656-cc73aca198b4
+		summarizeBy: sum
+		sourceColumn: UnitsBalance
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactProductInventory = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("znbjxinpfs5u3cxz7s7bppllcq-ilhmootuvz6u5cwdltudlcrq34.datawarehouse.fabric.microsoft.com"),
+				    AdventureWorks_Database = Source{[Name="AdventureWorks_Database"]}[Data],
+				    dbo_FactProductInventory = AdventureWorks_Database{[Schema="dbo",Item="FactProductInventory"]}[Data]
+				in
+				    dbo_FactProductInventory
+

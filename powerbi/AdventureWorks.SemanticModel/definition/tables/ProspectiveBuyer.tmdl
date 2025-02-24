@@ -1,0 +1,220 @@
+table ProspectiveBuyer
+	lineageTag: 6d5b6eb0-a03d-4d23-baa7-e7220d174bbb
+
+	column ProspectiveBuyerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 25f0066e-fa65-4b72-95cb-cd22a316a5a0
+		summarizeBy: count
+		sourceColumn: ProspectiveBuyerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProspectAlternateKey
+		dataType: string
+		lineageTag: 88f343ff-3f9b-4009-8a50-a3c3fdafc546
+		summarizeBy: none
+		sourceColumn: ProspectAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		lineageTag: fe769228-ecaf-446f-94f0-f26e7aab976b
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MiddleName
+		dataType: string
+		lineageTag: 6f7e1319-46b8-4273-99d8-5621d9d1e32c
+		summarizeBy: none
+		sourceColumn: MiddleName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		lineageTag: 7649dbbe-dce0-47ab-9986-0838bba82b43
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column BirthDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 93c79603-96e1-4bab-a614-b6dbcf09f826
+		summarizeBy: none
+		sourceColumn: BirthDate
+
+		variation Variation
+			isDefault
+			relationship: bdc4c2cb-96b3-44f4-8168-101ed0d2e286
+			defaultHierarchy: LocalDateTable_57ce12c1-95dc-4105-9b9f-32a2f08956e8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaritalStatus
+		dataType: string
+		lineageTag: 097dc429-8746-4bd4-b809-e3f191f472b6
+		summarizeBy: none
+		sourceColumn: MaritalStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 831c516a-ee5b-4f09-a645-c00691b29521
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmailAddress
+		dataType: string
+		lineageTag: 0632698e-f649-4591-94a7-9d1904e8d6c2
+		summarizeBy: none
+		sourceColumn: EmailAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearlyIncome
+		dataType: double
+		lineageTag: 9fb377cb-a80d-46b9-9ab0-49da9c3ae989
+		summarizeBy: sum
+		sourceColumn: YearlyIncome
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotalChildren
+		dataType: int64
+		formatString: 0
+		lineageTag: 2478bebb-a91b-4d80-9d84-e4a42b4498fc
+		summarizeBy: sum
+		sourceColumn: TotalChildren
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumberChildrenAtHome
+		dataType: int64
+		formatString: 0
+		lineageTag: 9765bb37-1b06-424c-838a-29cb5865fca5
+		summarizeBy: sum
+		sourceColumn: NumberChildrenAtHome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Education
+		dataType: string
+		lineageTag: 17349289-af49-4cfa-afb4-925f9819f377
+		summarizeBy: none
+		sourceColumn: Education
+
+		annotation SummarizationSetBy = Automatic
+
+	column Occupation
+		dataType: string
+		lineageTag: dbade4b2-6de7-47e8-9456-d22e346c3f09
+		summarizeBy: none
+		sourceColumn: Occupation
+
+		annotation SummarizationSetBy = Automatic
+
+	column HouseOwnerFlag
+		dataType: string
+		lineageTag: 970ff1cf-6de0-4636-a14e-709255844e17
+		summarizeBy: none
+		sourceColumn: HouseOwnerFlag
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumberCarsOwned
+		dataType: int64
+		formatString: 0
+		lineageTag: 4cff2628-1977-4a1f-9a35-db7fed297848
+		summarizeBy: sum
+		sourceColumn: NumberCarsOwned
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine1
+		dataType: string
+		lineageTag: 7fbc020a-64f4-4ebb-a94e-a0b091f5e118
+		summarizeBy: none
+		sourceColumn: AddressLine1
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine2
+		dataType: string
+		lineageTag: 62d89418-b2fd-4155-a905-79fd740e0c1f
+		summarizeBy: none
+		sourceColumn: AddressLine2
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: eee933b2-80b2-4ea0-9628-8315717d52a1
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateProvinceCode
+		dataType: string
+		lineageTag: 42185f05-437e-4e67-9400-a98890ec242a
+		summarizeBy: none
+		sourceColumn: StateProvinceCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		lineageTag: a163ad10-551c-46a2-8143-61cb8b7f899d
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone
+		dataType: string
+		lineageTag: 78c8b42c-9e9f-4dd8-bd71-d4be6d6fae71
+		summarizeBy: none
+		sourceColumn: Phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Salutation
+		dataType: string
+		lineageTag: 2d30947c-af50-4d67-baf9-3734819e331d
+		summarizeBy: none
+		sourceColumn: Salutation
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unknown
+		dataType: int64
+		formatString: 0
+		lineageTag: 0bc1092f-0ff3-4035-8f0f-29af3265e240
+		summarizeBy: sum
+		sourceColumn: Unknown
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ProspectiveBuyer = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("znbjxinpfs5u3cxz7s7bppllcq-ilhmootuvz6u5cwdltudlcrq34.datawarehouse.fabric.microsoft.com"),
+				    AdventureWorks_Database = Source{[Name="AdventureWorks_Database"]}[Data],
+				    dbo_ProspectiveBuyer = AdventureWorks_Database{[Schema="dbo",Item="ProspectiveBuyer"]}[Data]
+				in
+				    dbo_ProspectiveBuyer
+
+	annotation PBI_ResultType = Table
+

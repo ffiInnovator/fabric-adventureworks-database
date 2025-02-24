@@ -1,0 +1,100 @@
+table FactFinance
+	lineageTag: 70f6ae54-f58e-4263-956a-9792af4800d9
+
+	column FinanceKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 87e160e5-22af-4d54-836d-d37b4ffa9101
+		summarizeBy: count
+		sourceColumn: FinanceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 851f80f9-4076-49c5-bd65-fc356653bb94
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrganizationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: dfe2495b-f674-4736-9e4a-a204e8334db6
+		summarizeBy: none
+		sourceColumn: OrganizationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentGroupKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 38e0a4b3-7b20-484e-9435-670a4268db82
+		summarizeBy: none
+		sourceColumn: DepartmentGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 16fb978f-f1e4-42cf-bc9a-b61dc9f4e005
+		summarizeBy: none
+		sourceColumn: ScenarioKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 99a19836-01b1-403d-b25a-482063547d68
+		summarizeBy: none
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: double
+		lineageTag: 6c089a61-db7b-436d-97c6-133944714604
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1ac3e5d4-c39b-4216-99fa-54c63887c469
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 3bf9eaab-2c11-4448-a2b1-5fa9d73506e5
+			defaultHierarchy: LocalDateTable_e7b602df-dce0-48e3-954b-2c63be29c059.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSSQL_System_Uniquifier_347148282
+		dataType: int64
+		formatString: 0
+		lineageTag: dfe1bb37-bb76-45ff-84c2-47de3c90e21e
+		summarizeBy: sum
+		sourceColumn: MSSQL_System_Uniquifier_347148282
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactFinance = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("znbjxinpfs5u3cxz7s7bppllcq-ilhmootuvz6u5cwdltudlcrq34.datawarehouse.fabric.microsoft.com"),
+				    AdventureWorks_Database = Source{[Name="AdventureWorks_Database"]}[Data],
+				    dbo_FactFinance = AdventureWorks_Database{[Schema="dbo",Item="FactFinance"]}[Data]
+				in
+				    dbo_FactFinance
+

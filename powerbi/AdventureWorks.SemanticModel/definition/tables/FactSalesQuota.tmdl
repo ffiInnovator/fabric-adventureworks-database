@@ -1,0 +1,82 @@
+table FactSalesQuota
+	lineageTag: 277dadb5-0549-447e-be83-3d81d1693a8d
+
+	column SalesQuotaKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ce29ef2-0636-4a73-a01b-7d5bdfc1df20
+		summarizeBy: count
+		sourceColumn: SalesQuotaKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 5fecf0a7-537a-4068-a157-ce014136fe53
+		summarizeBy: none
+		sourceColumn: EmployeeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 11d64642-794f-4507-b560-2d87c2c99eeb
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarYear
+		dataType: int64
+		formatString: 0
+		lineageTag: 46d726fe-df48-42d3-b0aa-c9158f44687f
+		summarizeBy: sum
+		sourceColumn: CalendarYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarQuarter
+		dataType: int64
+		formatString: 0
+		lineageTag: a2a62ba9-96ae-4fb2-8b9d-4b77366d32c3
+		summarizeBy: sum
+		sourceColumn: CalendarQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesAmountQuota
+		dataType: double
+		lineageTag: f78b1517-010c-418b-83b3-d60d795cca5b
+		summarizeBy: sum
+		sourceColumn: SalesAmountQuota
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 09e9cbde-2798-4697-ab32-0ec14c141cea
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: d9f0539b-5a27-46ad-a201-cee7ccb6965b
+			defaultHierarchy: LocalDateTable_4c6025b8-2f93-42e0-ba50-beccb8a4e10f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactSalesQuota = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("znbjxinpfs5u3cxz7s7bppllcq-ilhmootuvz6u5cwdltudlcrq34.datawarehouse.fabric.microsoft.com"),
+				    AdventureWorks_Database = Source{[Name="AdventureWorks_Database"]}[Data],
+				    dbo_FactSalesQuota = AdventureWorks_Database{[Schema="dbo",Item="FactSalesQuota"]}[Data]
+				in
+				    dbo_FactSalesQuota
+

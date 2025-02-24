@@ -1,0 +1,86 @@
+table NewFactCurrencyRate
+	lineageTag: 084cfae4-e352-4b2e-bf4b-8f0f4dbdbf4f
+
+	column AverageRate
+		dataType: double
+		lineageTag: 2db550b6-20c8-4bb6-b678-a651cff89470
+		summarizeBy: sum
+		sourceColumn: AverageRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CurrencyID
+		dataType: string
+		lineageTag: a6c3eea1-f7eb-48ab-923c-1e2bc2928347
+		summarizeBy: none
+		sourceColumn: CurrencyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fc00ec99-1cbf-4d39-8dc4-1d3b08786ce2
+		summarizeBy: none
+		sourceColumn: CurrencyDate
+
+		variation Variation
+			isDefault
+			relationship: 03fc044e-bbdb-44f4-a889-1f095ca6f93a
+			defaultHierarchy: LocalDateTable_908a4a68-bc31-4913-a5a6-30f8147b1099.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EndOfDayRate
+		dataType: double
+		lineageTag: 294dca15-ce02-4306-8971-1e6cf1cc16b9
+		summarizeBy: sum
+		sourceColumn: EndOfDayRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CurrencyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4861ec17-c96f-4184-a357-c39ca36f2bd8
+		summarizeBy: none
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 313e54b5-25a8-4e47-92db-e58550d4ae5d
+		summarizeBy: count
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSSQL_System_Uniquifier_459148681
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d4a19bc-75b0-49a6-b700-06eaf90970e7
+		summarizeBy: sum
+		sourceColumn: MSSQL_System_Uniquifier_459148681
+
+		annotation SummarizationSetBy = Automatic
+
+	partition NewFactCurrencyRate = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("znbjxinpfs5u3cxz7s7bppllcq-ilhmootuvz6u5cwdltudlcrq34.datawarehouse.fabric.microsoft.com"),
+				    AdventureWorks_Database = Source{[Name="AdventureWorks_Database"]}[Data],
+				    dbo_NewFactCurrencyRate = AdventureWorks_Database{[Schema="dbo",Item="NewFactCurrencyRate"]}[Data]
+				in
+				    dbo_NewFactCurrencyRate
+
+	annotation PBI_ResultType = Table
+
