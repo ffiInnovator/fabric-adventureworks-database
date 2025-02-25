@@ -309,3 +309,21 @@ relationship 184cf3f3-8f58-e1ab-87d9-a93fdbb5e5fb
 	fromColumn: FactInternetSales.OrderDateKey
 	toColumn: DimDate.DateKey
 
+relationship AutoDetected_4ea7500c-501e-4114-94bb-153c4d8a7773
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: DimEmployeeImage.EmployeeKey
+	toColumn: DimEmployee.EmployeeKey
+
+relationship AutoDetected_bacb1e74-cb4c-4995-8282-3576e0881de1
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: DimSalesTerritoryImage.SalesTerritoryKey
+	toColumn: DimSalesTerritory.SalesTerritoryKey
+
+relationship AutoDetected_40286f7e-dc3e-436d-b837-5510c26d178f
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: DimProductImage.ProductKey
+	toColumn: DimProduct.ProductKey
+

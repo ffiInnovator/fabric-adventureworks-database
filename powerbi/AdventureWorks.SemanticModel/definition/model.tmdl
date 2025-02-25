@@ -6,7 +6,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["DimAccount","DimCurrency","DimCustomer","DimDate","DimDepartmentGroup","DimEmployee","DimGeography","DimOrganization","DimProduct","DimProductCategory","DimProductSubcategory","DimPromotion","DimReseller","DimSalesReason","DimSalesTerritory","DimScenario","FactAdditionalInternationalProductDescription","FactCallCenter","FactCurrencyRate","FactFinance","FactInternetSales","FactInternetSalesReason","FactProductInventory","FactResellerSales","FactSalesQuota","FactSurveyResponse","NewFactCurrencyRate","ProspectiveBuyer"]
+annotation PBI_QueryOrder = ["DimAccount","DimCurrency","DimCustomer","DimDate","DimDepartmentGroup","DimEmployee","DimGeography","DimOrganization","DimProduct","DimProductCategory","DimProductSubcategory","DimPromotion","DimReseller","DimSalesReason","DimSalesTerritory","DimScenario","FactAdditionalInternationalProductDescription","FactCallCenter","FactCurrencyRate","FactFinance","FactInternetSales","FactInternetSalesReason","FactProductInventory","FactResellerSales","FactSalesQuota","FactSurveyResponse","NewFactCurrencyRate","ProspectiveBuyer","DimEmployeeImage","DimProductImage","DimSalesTerritoryImage"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -68,6 +68,9 @@ ref table LocalDateTable_908a4a68-bc31-4913-a5a6-30f8147b1099
 ref table ProspectiveBuyer
 ref table LocalDateTable_57ce12c1-95dc-4105-9b9f-32a2f08956e8
 ref table LocalDateTable_afae3caa-023f-4d6b-9014-551fbee99766
+ref table DimEmployeeImage
+ref table DimProductImage
+ref table DimSalesTerritoryImage
 
 ref cultureInfo en-US
 
