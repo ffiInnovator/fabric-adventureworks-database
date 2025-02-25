@@ -14,10 +14,10 @@ table FactInternetSales
 		dataType: int64
 		formatString: 0
 		lineageTag: 2a6497a8-67e3-4e1e-bb64-8525c06d6c9f
-		summarizeBy: count
+		summarizeBy: none
 		sourceColumn: OrderDateKey
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column DueDateKey
 		dataType: int64
@@ -223,8 +223,8 @@ table FactInternetSales
 
 		variation Variation
 			isDefault
-			relationship: 8a84de74-9747-43cb-92d9-10eab3e905f3
-			defaultHierarchy: LocalDateTable_c3e27b5d-83ef-470a-b4fe-5599d68ed986.'Date Hierarchy'
+			relationship: e00b4400-0172-48e5-92a7-58e147fe6a0f
+			defaultHierarchy: LocalDateTable_afae3caa-023f-4d6b-9014-551fbee99766.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 

@@ -51,7 +51,28 @@
                 }
               },
               "queryRef": "Sum(FactInternetSales.SalesAmount)",
-              "nativeQueryRef": "SalesAmount"
+              "nativeQueryRef": "Internet Sales",
+              "displayName": "Internet Sales"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FactResellerSales"
+                        }
+                      },
+                      "Property": "SalesAmount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FactResellerSales.SalesAmount)",
+              "nativeQueryRef": "Reseller Sales",
+              "displayName": "Reseller Sales"
             }
           ]
         }
@@ -87,7 +108,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'SalesAmount by SalesTerritoryRegion'"
+                  "Value": "'Sales by Territory Region'"
                 }
               }
             }

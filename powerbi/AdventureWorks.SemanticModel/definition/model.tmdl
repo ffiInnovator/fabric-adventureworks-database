@@ -10,7 +10,7 @@ annotation PBI_QueryOrder = ["DimAccount","DimCurrency","DimCustomer","DimDate",
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.139.2054.0 (24.12)+334ca1c95b576cc53924655643b0d36f21caac55
+annotation PBIDesktopVersion = 2.140.1078.0 (25.02)+2cce24fb16e8b71ba835921d23e7ffc1fab909df
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -50,7 +50,6 @@ ref table LocalDateTable_e2bb3dd1-545a-4ca1-959b-8117fe7af707
 ref table FactFinance
 ref table LocalDateTable_e7b602df-dce0-48e3-954b-2c63be29c059
 ref table FactInternetSales
-ref table LocalDateTable_c3e27b5d-83ef-470a-b4fe-5599d68ed986
 ref table LocalDateTable_abb3b916-a743-43be-aa42-aafcaa066dc8
 ref table LocalDateTable_162526e1-b5dd-4694-9d53-fc77b118ec3f
 ref table FactInternetSalesReason
@@ -68,6 +67,7 @@ ref table NewFactCurrencyRate
 ref table LocalDateTable_908a4a68-bc31-4913-a5a6-30f8147b1099
 ref table ProspectiveBuyer
 ref table LocalDateTable_57ce12c1-95dc-4105-9b9f-32a2f08956e8
+ref table LocalDateTable_afae3caa-023f-4d6b-9014-551fbee99766
 
 ref cultureInfo en-US
 

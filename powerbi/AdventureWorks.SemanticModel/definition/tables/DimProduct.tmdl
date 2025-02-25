@@ -310,6 +310,7 @@ table DimProduct
 	column LargePhotoUrl
 		dataType: string
 		lineageTag: 3ac3890e-7f73-4785-bfe1-907bdd161d8c
+		dataCategory: ImageUrl
 		summarizeBy: none
 		sourceColumn: LargePhotoUrl
 

@@ -46,6 +46,7 @@ table DimSalesTerritory
 	column SalesTerritoryImageUrl
 		dataType: string
 		lineageTag: fe1cbd01-0cc9-46f1-b9f1-f5e8c1d25387
+		dataCategory: ImageUrl
 		summarizeBy: none
 		sourceColumn: SalesTerritoryImageUrl
 

@@ -14,7 +14,7 @@ table FactResellerSales
 		dataType: int64
 		formatString: 0
 		lineageTag: cb82a844-1e00-424e-8e54-1704086387a8
-		summarizeBy: count
+		summarizeBy: none
 		sourceColumn: OrderDateKey
 
 		annotation SummarizationSetBy = Automatic
@@ -274,4 +274,6 @@ table FactResellerSales
 				    dbo_FactResellerSales = AdventureWorks_Database{[Schema="dbo",Item="FactResellerSales"]}[Data]
 				in
 				    dbo_FactResellerSales
+
+	annotation PBI_ResultType = Table
 

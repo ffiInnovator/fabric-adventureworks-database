@@ -389,8 +389,8 @@
       "nodes": [
         {
           "location": {
-            "x": 659.1111111111112,
-            "y": 399.99999999999994
+            "x": 675.77777777777783,
+            "y": 432.22222222222217
           },
           "nodeIndex": "FactInternetSales",
           "nodeLineageTag": "0176f9a3-7e59-4149-9a3c-1ad2c6b1117f",
@@ -398,7 +398,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 8
         },
         {
           "location": {
@@ -411,7 +411,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 7
         },
         {
           "location": {
@@ -424,7 +424,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 2
         },
         {
           "location": {
@@ -437,12 +437,12 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 3
         },
         {
           "location": {
-            "x": 98,
-            "y": 452
+            "x": 40.222222222222214,
+            "y": 697.55555555555554
           },
           "nodeIndex": "DimGeography",
           "nodeLineageTag": "3ba2c5ad-585a-4bca-83f4-18492ace7eca",
@@ -450,7 +450,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 4
         },
         {
           "location": {
@@ -463,10 +463,36 @@
             "height": 224,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1379.1111111111111,
+            "y": 620.55555555555554
+          },
+          "nodeIndex": "FactInternetSalesReason",
+          "nodeLineageTag": "6d242263-2c1f-407b-8d71-f6fc9bb234cb",
+          "size": {
+            "height": 206.44444444444446,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1345.7777777777778,
+            "y": 895
+          },
+          "nodeIndex": "FactResellerSales",
+          "nodeLineageTag": "ee177159-3c29-468e-86e2-dca10f6303c7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
         }
       ],
-      "name": "Internet Sales",
+      "name": "Sales",
       "zoomValue": 90,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
@@ -474,6 +500,6 @@
       "tablesLocked": false
     }
   ],
-  "selectedDiagram": "Internet Sales",
+  "selectedDiagram": "Sales",
   "defaultDiagram": "All tables"
 }

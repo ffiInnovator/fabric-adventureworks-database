@@ -80,3 +80,5 @@ table FactSalesQuota
 				in
 				    dbo_FactSalesQuota
 
+	annotation PBI_ResultType = Table
+

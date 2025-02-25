@@ -288,6 +288,7 @@ table DimEmployee
 	column EmployeePhotoUrl
 		dataType: string
 		lineageTag: 8e572666-29c1-4c5e-9259-27713657f384
+		dataCategory: ImageUrl
 		summarizeBy: none
 		sourceColumn: EmployeePhotoUrl
 

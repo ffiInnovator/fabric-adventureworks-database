@@ -22,17 +22,37 @@
                       "Entity": "DimDate"
                     }
                   },
-                  "Property": "FiscalQuarter"
+                  "Property": "FiscalYear"
                 }
               },
-              "queryRef": "DimDate.FiscalQuarter",
-              "nativeQueryRef": "FiscalQuarter",
+              "queryRef": "DimDate.FiscalYear",
+              "nativeQueryRef": "FiscalYear",
               "active": true
             }
           ]
         },
         "Y": {
           "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FactResellerSales"
+                        }
+                      },
+                      "Property": "SalesAmount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FactResellerSales.SalesAmount)",
+              "nativeQueryRef": "Reseller Sales",
+              "displayName": "Reseller Sales"
+            },
             {
               "field": {
                 "Aggregation": {
@@ -50,7 +70,8 @@
                 }
               },
               "queryRef": "Sum(FactInternetSales.SalesAmount)",
-              "nativeQueryRef": "Sum of SalesAmount"
+              "nativeQueryRef": "Internet Sales",
+              "displayName": "Internet Sales"
             }
           ]
         }
@@ -64,7 +85,7 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "FactInternetSales"
+                        "Entity": "FactResellerSales"
                       }
                     },
                     "Property": "SalesAmount"
@@ -86,7 +107,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'SalesAmount by FiscalQuarter'"
+                  "Value": "'Sales by Fiscal Year'"
                 }
               }
             }
