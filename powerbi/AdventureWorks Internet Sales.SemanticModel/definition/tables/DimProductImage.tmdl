@@ -1,0 +1,35 @@
+table DimProductImage
+	lineageTag: b4f3c049-43b5-4e2c-a5ff-7abb83e6d73f
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b7d1a53a-e993-44e3-a63d-4916558ce7e9
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column LargePhotoWebUrl
+		dataType: string
+		lineageTag: 3931ddb0-f200-4b46-8461-072ae462f6e8
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: LargePhotoWebUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProductImage = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"3ac7ce42-ae74-4e7d-8ac3-5ce8358a30df" = Workspaces{[workspaceId="3ac7ce42-ae74-4e7d-8ac3-5ce8358a30df"]}[Data],
+				    #"274ba827-63bb-4400-b0f8-0a789bfdd8c3" = #"3ac7ce42-ae74-4e7d-8ac3-5ce8358a30df"{[dataflowId="274ba827-63bb-4400-b0f8-0a789bfdd8c3"]}[Data],
+				    DimProductImage_ = #"274ba827-63bb-4400-b0f8-0a789bfdd8c3"{[entity="DimProductImage",version=""]}[Data]
+				in
+				    DimProductImage_
+
+	annotation PBI_ResultType = Table
+

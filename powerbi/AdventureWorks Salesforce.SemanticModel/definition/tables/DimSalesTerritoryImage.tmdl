@@ -1,0 +1,35 @@
+table DimSalesTerritoryImage
+	lineageTag: 83947fea-695a-40b2-942e-b9fd9a54094b
+
+	column SalesTerritoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3bc47091-659b-420b-b09c-6a957a4b8df5
+		summarizeBy: none
+		sourceColumn: SalesTerritoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryImageWebUrl
+		dataType: string
+		lineageTag: 241d66e5-99aa-440c-b6c7-c144c10d694a
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: SalesTerritoryImageWebUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSalesTerritoryImage = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"3ac7ce42-ae74-4e7d-8ac3-5ce8358a30df" = Workspaces{[workspaceId="3ac7ce42-ae74-4e7d-8ac3-5ce8358a30df"]}[Data],
+				    #"274ba827-63bb-4400-b0f8-0a789bfdd8c3" = #"3ac7ce42-ae74-4e7d-8ac3-5ce8358a30df"{[dataflowId="274ba827-63bb-4400-b0f8-0a789bfdd8c3"]}[Data],
+				    DimSalesTerritoryImage_ = #"274ba827-63bb-4400-b0f8-0a789bfdd8c3"{[entity="DimSalesTerritoryImage",version=""]}[Data]
+				in
+				    DimSalesTerritoryImage_
+
+	annotation PBI_ResultType = Table
+

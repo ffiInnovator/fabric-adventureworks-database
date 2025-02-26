@@ -1,0 +1,38 @@
+table DimCurrency
+	lineageTag: 9ae8c4fb-d757-4727-a77d-82c859db90f7
+
+	column CurrencyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 0bf5cc22-98d4-4890-9617-73f6797bc417
+		summarizeBy: none
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyAlternateKey
+		dataType: string
+		lineageTag: b78520bc-4062-4463-9a56-3b3286c52d47
+		summarizeBy: none
+		sourceColumn: CurrencyAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyName
+		dataType: string
+		lineageTag: a895ff86-5a48-47ba-b2f3-2ecefff0018d
+		summarizeBy: none
+		sourceColumn: CurrencyName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCurrency = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("znbjxinpfs5u3cxz7s7bppllcq-ilhmootuvz6u5cwdltudlcrq34.datawarehouse.fabric.microsoft.com"),
+				    AdventureWorks_Database = Source{[Name="AdventureWorks_Database"]}[Data],
+				    dbo_DimCurrency = AdventureWorks_Database{[Schema="dbo",Item="DimCurrency"]}[Data]
+				in
+				    dbo_DimCurrency
+
