@@ -1,0 +1,38 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DimCurrency","DimDate","DimGeography","DimProduct","DimProductCategory","DimProductSubcategory","DimPromotion","DimReseller","FactResellerSales","DimProductImage"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.140.1078.0 (25.02)+2cce24fb16e8b71ba835921d23e7ffc1fab909df
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DimCurrency
+ref table DateTableTemplate_939d6908-a5dd-4d5b-b8ff-521a8124e140
+ref table DimDate
+ref table LocalDateTable_d3329339-72e7-4873-a96f-b8a078f4fc06
+ref table DimGeography
+ref table DimProduct
+ref table LocalDateTable_39d7b612-84a8-4201-8c98-d91a88fed604
+ref table LocalDateTable_cac959fd-4596-427f-88c6-25cc2ca5b84c
+ref table DimProductCategory
+ref table DimProductSubcategory
+ref table DimPromotion
+ref table LocalDateTable_a7dd181a-3d9f-4374-94a0-a68e7e751d95
+ref table LocalDateTable_c1a46688-49b8-40dc-8675-6fd6ad3bc7ab
+ref table DimReseller
+ref table FactResellerSales
+ref table LocalDateTable_1c12d01a-8b42-4a35-9ce2-a987cfb517fc
+ref table LocalDateTable_beb4d9c6-4b11-4550-88d9-05ef3b3c6876
+ref table LocalDateTable_9c9290a9-7226-494c-887d-cbcf29a91e29
+ref table DimProductImage
+
+ref cultureInfo en-US
+

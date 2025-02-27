@@ -1,0 +1,159 @@
+table DimPromotion
+	lineageTag: 09580e04-2131-4a3e-b9f9-60202742356b
+
+	column PromotionKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b543ddf5-321e-4cd4-a867-1cee3ea88bde
+		summarizeBy: none
+		sourceColumn: PromotionKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PromotionAlternateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 005a147a-60a3-4433-a4f9-b78af7fc3b23
+		summarizeBy: count
+		sourceColumn: PromotionAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishPromotionName
+		dataType: string
+		lineageTag: 2a97f843-ac90-4449-b822-d30be2781635
+		summarizeBy: none
+		sourceColumn: EnglishPromotionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SpanishPromotionName
+		dataType: string
+		lineageTag: baba497d-c0a1-4d07-9e79-e239437688d1
+		summarizeBy: none
+		sourceColumn: SpanishPromotionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FrenchPromotionName
+		dataType: string
+		lineageTag: 18b81f68-5681-4cd4-8f5b-1cf0c4a09922
+		summarizeBy: none
+		sourceColumn: FrenchPromotionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscountPct
+		dataType: double
+		lineageTag: ef58fd33-ff68-4810-beca-309d8f57f783
+		summarizeBy: sum
+		sourceColumn: DiscountPct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EnglishPromotionType
+		dataType: string
+		lineageTag: 03b31138-b5d5-4988-80e3-6f3ad14463d0
+		summarizeBy: none
+		sourceColumn: EnglishPromotionType
+
+		annotation SummarizationSetBy = Automatic
+
+	column SpanishPromotionType
+		dataType: string
+		lineageTag: 8cfba5dd-d5a5-4d32-a184-1f6ecde8828e
+		summarizeBy: none
+		sourceColumn: SpanishPromotionType
+
+		annotation SummarizationSetBy = Automatic
+
+	column FrenchPromotionType
+		dataType: string
+		lineageTag: fc05254e-c970-49e2-bd61-bca8e75cec2d
+		summarizeBy: none
+		sourceColumn: FrenchPromotionType
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishPromotionCategory
+		dataType: string
+		lineageTag: 87a79632-a89a-402c-a84f-30b33787e1d9
+		summarizeBy: none
+		sourceColumn: EnglishPromotionCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column SpanishPromotionCategory
+		dataType: string
+		lineageTag: 13946d86-b68f-44a6-8cbd-e2ba1a183057
+		summarizeBy: none
+		sourceColumn: SpanishPromotionCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column FrenchPromotionCategory
+		dataType: string
+		lineageTag: 908d83d1-24ff-4435-af78-f73d1be180dc
+		summarizeBy: none
+		sourceColumn: FrenchPromotionCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 14b80493-a232-4e0f-ae7d-09fea94720a0
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		variation Variation
+			isDefault
+			relationship: ba7b48be-5396-420a-abf7-1f3f749a0a3e
+			defaultHierarchy: LocalDateTable_a7dd181a-3d9f-4374-94a0-a68e7e751d95.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: acd66912-1c2c-4d9f-9b6a-ff6491b37f38
+		summarizeBy: none
+		sourceColumn: EndDate
+
+		variation Variation
+			isDefault
+			relationship: 9f646bf9-aa49-4bb7-9045-d41fbdb8354b
+			defaultHierarchy: LocalDateTable_c1a46688-49b8-40dc-8675-6fd6ad3bc7ab.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MinQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 7eb71ea8-c341-4e24-bb7d-41a0a467d63d
+		summarizeBy: sum
+		sourceColumn: MinQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaxQty
+		dataType: int64
+		formatString: 0
+		lineageTag: a1764459-3dfa-4007-962d-b591320c4beb
+		summarizeBy: sum
+		sourceColumn: MaxQty
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimPromotion = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("znbjxinpfs5u3cxz7s7bppllcq-ilhmootuvz6u5cwdltudlcrq34.datawarehouse.fabric.microsoft.com"),
+				    AdventureWorks_Database = Source{[Name="AdventureWorks_Database"]}[Data],
+				    dbo_DimPromotion = AdventureWorks_Database{[Schema="dbo",Item="DimPromotion"]}[Data]
+				in
+				    dbo_DimPromotion
+

@@ -68,11 +68,6 @@ relationship 3bf9eaab-2c11-4448-a2b1-5fa9d73506e5
 	fromColumn: FactFinance.Date
 	toColumn: LocalDateTable_e7b602df-dce0-48e3-954b-2c63be29c059.Date
 
-relationship 8a84de74-9747-43cb-92d9-10eab3e905f3
-	joinOnDateBehavior: datePartOnly
-	fromColumn: FactInternetSales.OrderDate
-	toColumn: LocalDateTable_c3e27b5d-83ef-470a-b4fe-5599d68ed986.Date
-
 relationship 9ced1664-ee13-460c-8b52-4657c9eee9aa
 	joinOnDateBehavior: datePartOnly
 	fromColumn: FactInternetSales.DueDate
@@ -274,4 +269,61 @@ relationship AutoDetected_1b87ebd6-85a9-458f-884d-8c1dda7c3815
 relationship AutoDetected_2ce0cdc3-441e-4b79-b0ab-a5fb63305c03
 	fromColumn: FactFinance.ScenarioKey
 	toColumn: DimScenario.ScenarioKey
+
+relationship 2e6b76be-47b7-169f-c1ac-cc58320a5440
+	isActive: false
+	fromColumn: FactInternetSales.DueDateKey
+	toColumn: DimDate.DateKey
+
+relationship 09accb42-dda7-f093-d97c-b76cfd0564e4
+	isActive: false
+	fromColumn: FactInternetSales.ShipDateKey
+	toColumn: DimDate.DateKey
+
+relationship 83f2f8fa-34eb-efa2-540e-5769e5b473d2
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: FactInternetSales.SalesOrderNumber
+	toColumn: FactInternetSalesReason.SalesOrderNumber
+
+relationship 49cd95b3-1526-9b89-2644-7a6477fa6d8d
+	fromColumn: FactResellerSales.OrderDateKey
+	toColumn: DimDate.DateKey
+
+relationship 65fdacc2-06fb-f34e-6a2d-8166a1bed353
+	isActive: false
+	fromColumn: FactResellerSales.DueDateKey
+	toColumn: DimDate.DateKey
+
+relationship 39ca5ea4-fc80-bf9e-837b-b4c08b86dc9b
+	isActive: false
+	fromColumn: FactResellerSales.ShipDateKey
+	toColumn: DimDate.DateKey
+
+relationship e00b4400-0172-48e5-92a7-58e147fe6a0f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactInternetSales.OrderDate
+	toColumn: LocalDateTable_afae3caa-023f-4d6b-9014-551fbee99766.Date
+
+relationship 184cf3f3-8f58-e1ab-87d9-a93fdbb5e5fb
+	fromColumn: FactInternetSales.OrderDateKey
+	toColumn: DimDate.DateKey
+
+relationship AutoDetected_4ea7500c-501e-4114-94bb-153c4d8a7773
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: DimEmployeeImage.EmployeeKey
+	toColumn: DimEmployee.EmployeeKey
+
+relationship AutoDetected_bacb1e74-cb4c-4995-8282-3576e0881de1
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: DimSalesTerritoryImage.SalesTerritoryKey
+	toColumn: DimSalesTerritory.SalesTerritoryKey
+
+relationship AutoDetected_40286f7e-dc3e-436d-b837-5510c26d178f
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: DimProductImage.ProductKey
+	toColumn: DimProduct.ProductKey
 
