@@ -13,14 +13,14 @@ In order to leverage this solution, you'll need a Microsoft Fabric capacity (F2 
 
 ## Architecture
 
-The intent of this project is to illustrate a best practice approach to build a Medallion Architecture in Microsoft Fabric by using a different fit-for-purpose components for each layer. Lakehouses are used for raw data in the **bronze** layer, where each attribute is a string to ensure every row is ingested without error.
+The intent of this project is to illustrate a best practice approach to build a Medallion Architecture in Microsoft Fabric by using a different fit-for-purpose component for each layer. Lakehouses are used for raw data in the **_bronze_** layer, where each attribute is a string to ensure every row is ingested without error.
 
-The Warehouse hosts the **silver** with the data model needed to meet the business requirements. It was chosen for two reasons;
+A Warehouse hosts the **_silver_** layer with the data model needed to meet the business requirements. It was chosen for two reasons;
 
 1. Many data types are not supported in Lakehouses. For instance, I faced challenges with boolean and binary (images).
 1. The SQL to create primary and foreign keys is not supported in Lakehouses.
 
-Finally, the **gold** layer utilizes SQL Database because it supports the richest set of SQL language and development capabities (e.g., stored procedures, user-defined functions, etc). Semantic Models are built from the database to create a data mesh design and expose information as data products. This approach allows for reusable models for various users and business domains, enabling more fine-grained security, governance, and self-service reporting.
+Finally, the **_gold_** layer utilizes SQL Database because it supports the richest set of SQL language and development capabities (e.g., stored procedures, user-defined functions, etc). Semantic Models are built from the database to create a data mesh design and expose information as data products. This approach allows for reusable models for various users and business domains, enabling more fine-grained security, governance, and self-service reporting.
 
 ![Fabric AdventureWorks Architecture](resources/fabric-adventureworks-architecture.png "The Medallion architecture pattern implemented in Microsoft Fabric")
 **Fabric AdventureWorks Architecture**
@@ -50,4 +50,10 @@ iconv -f UTF-16LE -t UTF-8 DimAccount.csv >DimAccount_UTF8.csv
 I saved you the pain of this step, so you can simply upload the converted, UTF-8 formatted CSV files from this repo to the "warehouse" folder in your Lakehouse.
 
 
-## Raw to Bronze
+## Phase 2 -- Bronze to Silver
+
+> Coming soon!
+
+
+## Phase 3 -- Silver to Gold
+> Coming soon!
