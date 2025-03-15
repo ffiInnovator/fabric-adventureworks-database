@@ -87,10 +87,18 @@ In the Medallion Architecture, the **_SILVER_** layer is where data undergoes cl
 - Performs data type conversion
 - Executes nullable transformations
 
+The `DimEmployee` table as viwed in the Microsoft Fabric database explorer view displays some examples of the the successful column transformations:
+
+![Fabric AdventureWorks Database Explorer](resources/fabric-adventureworks-database-explorer.png "AdventureWorks SQL Database Example Column Transformations in Microsoft Fabric")
+**Fabric AdventureWorks SQL Database Explorer**
+
 ### Step 2.4 (workaround)
 A `Data pipeline` named `Copy Bronze to Silver` was developed which contains three separate activities. First, a parameter array of all target **_SILVER_** layer tables in the `Lakehouse` (prefixed `slv_`) is used to feed a `Copy_table` activity to copy each table to the `Warehouse`. Second, upon success, all the transient tables (prefixed `slv_`) in the `Lakehouse` are deleted by calling `notebooks/Drop Lakehouse Tables.ipynb`. This avoids duplicate data and unnecessary storage costs in OneLake. The third and final step refreshes the default `Semantic model` by calling `notebooks/Refresh Warehouse Semantic Model.ipynb` which uses the Fabric API.
 
-All the code for this step is included in this repo and can be imported into your workspace and executed to perform the required data processing.
+All the code for this step is included in this repo and can be imported into your workspace and executed to perform the required data processing. The following diagram illustrates the flow:
+
+![Fabric AdventureWorks Data Pipline](resources/fabric-adventureworks-data-pipeline.png "AdventureWorks Data Pipeline Flow in Microsoft Fabric")
+**Fabric AdventureWorks Data Pipeline Flow**
 
 ### Step 2.5
 We must now create the primary and foreign key relationships in the **_SILVER_** layer to help achieve its' purpose by:
