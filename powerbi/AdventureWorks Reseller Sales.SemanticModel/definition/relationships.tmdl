@@ -63,7 +63,6 @@ relationship AutoDetected_03561eb9-1db0-4541-8f61-5b4a9c2ee0ef
 	toColumn: DimPromotion.PromotionKey
 
 relationship AutoDetected_f072d130-b750-4eb0-b0b1-6a46c88a2790
-	isActive: false
 	fromColumn: FactResellerSales.ResellerKey
 	toColumn: DimReseller.ResellerKey
 

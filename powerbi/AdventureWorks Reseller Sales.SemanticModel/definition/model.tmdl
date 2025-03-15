@@ -10,7 +10,7 @@ annotation PBI_QueryOrder = ["DimCurrency","DimDate","DimGeography","DimProduct"
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.140.1078.0 (25.02)+2cce24fb16e8b71ba835921d23e7ffc1fab909df
+annotation PBIDesktopVersion = 2.140.1476.0 (25.02)+e8c6a85d1d09735c5c055c3244a60ff4076cd2cf
 
 annotation PBI_ProTooling = ["DevMode"]
 

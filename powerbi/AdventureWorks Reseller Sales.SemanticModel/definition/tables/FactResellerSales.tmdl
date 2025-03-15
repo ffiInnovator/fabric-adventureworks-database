@@ -41,7 +41,7 @@ table FactResellerSales
 		dataType: int64
 		formatString: 0
 		lineageTag: 56a8a34f-1b3e-40cc-a7d3-9430f3c29ba8
-		summarizeBy: count
+		summarizeBy: none
 		sourceColumn: ResellerKey
 
 		annotation SummarizationSetBy = Automatic

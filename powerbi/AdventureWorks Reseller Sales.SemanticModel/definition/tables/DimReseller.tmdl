@@ -5,7 +5,7 @@ table DimReseller
 		dataType: int64
 		formatString: 0
 		lineageTag: 4fca7436-018b-4e74-939d-82698ec70962
-		summarizeBy: count
+		summarizeBy: none
 		sourceColumn: ResellerKey
 
 		annotation SummarizationSetBy = Automatic
