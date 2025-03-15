@@ -20,7 +20,7 @@ A `Warehouse` hosts the **_SILVER_** layer with the data model needed to meet th
 1. Supports indexing for faster queries.
 1. Strong schema enforcement, with SQL to create primary and foreign keys.
 1. High concurrency, optimized for BI workloads needed for operational reporting.
-1. Works better with Power BI
+1. Works better with Power BI.
 
 Finally, the **_GOLD_** layer utilizes `SQL Database` because it supports the richest set of SQL language and development capabities (e.g., stored procedures, user-defined functions, etc). The `Semantic model` artifacts are built from the database to create a data mesh design and expose information as data products. This approach allows for reusable models for various users and business domains, enabling more fine-grained security, governance, and self-service reporting.
 
@@ -82,7 +82,7 @@ Import the `Notebook` named `"Process Bronze to Silver.ipynb", located in the `"
 
 In the Medallion Architecture, the **_SILVER_** layer is where data undergoes cleaning, validation, and transformation to create a more refined and consistent dataset. This layer is crucial for ensuring data quality and reliability, making it suitable for business intelligence and machine learning applications. The specific details for this project are as follows:
 - Converts text strings to binary format
-- Convert texts string to boolean format
+- Converts text strings to boolean format
 - Removes multi-byte characters
 - Performs data type conversion
 - Executes nullable transformations
