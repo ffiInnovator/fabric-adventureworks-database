@@ -5,3 +5,4 @@
 **/.pbi/cache.abf
 **/.platform
 *.config.json
+*-workspace
