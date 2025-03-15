@@ -76,7 +76,7 @@ Create the tables using the metadata that was supplied by the data source provid
 The code is provided for you in this repo. Open the `SQL Endpoint` view, create a new SQL Query, copy and paste the script in the `"sql/warehouse"` folder named `"Create Warehouse Tables.sql"` and execute to create the fact and dimension tables.
 
 ### Step 2.3
-Import the `Notebook` named `"Process Bronze to Silver.ipynb", located in the `"notebooks"` folder, into your workspace and run it to load the **_SILVER_** layer tables.
+Import the `Notebook` named `"Process Bronze to Silver.ipynb"`, located in the `"notebooks"` folder, into your workspace and run it to load the **_SILVER_** layer tables.
 
 > NOTE: There seems to be the issue '403 Forbibben' writing direct to the `Warehouse` from PySpark connected to a `Lakehouse`. I had to develop a workaround to write transient tables (prefixed `slv_`) in the `Lakehouse`. This forced an extra step (see below) to get all data into the **_SILVER_** layer.
 
@@ -115,3 +115,63 @@ The final outcome of this phase will be a fully populated star-schema modeled da
 
 ## Phase 3 -- Silver to Gold
 > Coming soon!
+
+### Step 3.1
+Create the `SQL Database` that will serve as the **_GOLD_** layer; I called mine "AdventureWorks_Database".
+
+### Step 3.2
+Import the `Notebook` named `"Process Silver to Gold.ipynb"`, located in the `"notebooks"` folder, into your workspace and run it to load the **_GOLD_** layer tables.
+
+### Step 3.3
+We must now create the primary and foreign key relationships in the **_GOLD_** layer to create the star-schema model required for analytical reporting. This model works best with the Power BI component used in our AdventureWorks Fabric Architecture.
+
+The code is provided for you in this repo. Open the `SQL Endpoint` view, create 2 new SQL Queries, copy and paste the scripts in the `"sql/database"` folder, the first named `"Add Database Primary Keys.sql"`and the second named `"Add Database Foreign Keys.sql"`, and finally execute each to create the keys and relationships.
+
+### Step 3.4
+It is also important to ensure the data quality of this business-ready dataset in terms of "required" fields. This is accomplish by defining the "nullable" database constraint. Open the `SQL Endpoint` view, create a new SQL Query, copy and paste the script in the `"sql/database"` folder named `"Add Database Not Null Constraints.sql"` , and finally execute each to create the constraints.
+
+### Step 3.5
+The business requirements specified severial specialized combinations of data entities in order to easiliy generate reports. This is accomplish by defining "views" of the data, which also need a few calculated columns. The code is provided for you in this repo. Open the `SQL Endpoint` view, create 2 new SQL Queries, copy and paste the scripts in the `"sql/database"` folder, the first named `"Create Database User-Defined Functions.sql"`and the second named `"Create Database Views.sql"`, and finally execute each to create the functions for calculated columns and the views which reference them.
+
+### Step 3.6 (workaround)
+There appears to be a Microsoft Fabric issue displaying images via URLs to `Lakehouse` files in OneLake via Power BI. As a workaround, I developed a process that creates data model "extension" tables that add a `SharePoint` based URL where the images were copied manually.
+
+Although this step should be unnecessary, it does illustatre a valid real-world scenario where specialized tables, most always dimensions, are added directly to the **_GOLD_** layer to support a required business classification or if the data is sourced from a well-maintained system.
+
+Import the `Dataflow (Gen2)` into yourworkspace and run it to create the three dimension tables that point to images and used for employyee, product, and territory data.
+
+> NOTE: You **must edit** the code first to point to your specific site where the images werte copied.
+
+### Step 3.7
+Now it is time to build the `Semantic model` objects that create the **data products** for the AdventureWorks data mesh architecture. I have done this step for you in this repo, creating three domain models as `Power BI Projects (.pbip)` files in the `powerbi` folder.:
+
+1. `Internet Sales`
+1. `Reseller Sales`
+1. `Sales Force Effectiveness`
+
+I'm sure there are more  **data products** that can be developed; one that specifically comes to mind is `Finance`, and there are likely several others. I'll leave these to your imagination and for future development of this repo.
+
+### Step 3.8
+The final outcome is developed in this last step of the project, and to be honest, the only one that the business users care about!
+
+Here we develop a starter set of `Report` artifacts to get the creativity of ideas flowing in the business users minds so that they can take over with their own self-service dashboard development using the provided `Semantic model` **data products**.
+
+![AdventureWorks Data Visualization](resources/fabric-adventureworks-internet-report.png "Report based on the Internet Sales Semantic model in Microsoft Fabric")
+**Internet Sales Report -- Power BI**
+
+![AdventureWorks Data Visualization](resources/fabric-adventureworks-reseller-report.png "Report based on the Reseller Sales Semantic model in Microsoft Fabric")
+**Reseller Sales Report -- Power BI**
+
+![AdventureWorks Data Visualization](resources/fabric-adventureworks-sfe-report.png "Report based on the Sales Force Effectiveness Semantic model in Microsoft Fabric")
+**Sales Force Effectiveness -- Power BI**
+
+
+## Conclusion
+I hope you devive value out of this project. Feel free to contact me if you want to create a `fork` and collaborate on further deveopment. I believe I've accomplished the following:
+
+- Knowledge Sharing & Community Learning – Provides real-world examples, best practices, and reduces the learning curve for Microsoft Fabric users.
+- Accelerating Adoption & Implementation – Offers ready-to-use templates and patterns for faster prototyping and deployment.
+- Continuous Improvement & Innovation – Encourages collaboration, feedback, and updates to stay aligned with new Microsoft Fabric features.  
+
+![Fabric Future Innovator Services](resources/ffi-services-transparent-logo-01.png "A consulting firm specializing in Microsoft Fabric as an all-in-one AI assisted analytics software-as-a-service (SaaS) solution.")  
+**Fabric Future Innovator Services -- Gary Csaniz, Founder**
