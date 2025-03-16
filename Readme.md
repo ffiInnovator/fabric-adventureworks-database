@@ -78,7 +78,10 @@ The code is provided for you in this repo. Open the `SQL Endpoint` view, create 
 ### Step 2.3
 Import the `Notebook` named `"Process Bronze to Silver.ipynb"`, located in the `"notebooks"` folder, into your workspace and run it to load the **_SILVER_** layer tables.
 
-> NOTE: There seems to be the issue '403 Forbibben' writing direct to the `Warehouse` from PySpark connected to a `Lakehouse`. I had to develop a workaround to write transient tables (prefixed `slv_`) in the `Lakehouse`. This forced an extra step (see below) to get all data into the **_SILVER_** layer.
+> NOTE: There seems to be the issue '403 Forbibben' writing direct to the `Warehouse` from PySpark connected to a `Lakehouse`. I suspect there may be a support constraint with PySpark (see image below). I had to develop a workaround to write transient tables (prefixed `slv_`) in the `Lakehouse`. This forced an extra step (see below) to get all data into the **_SILVER_** layer.
+
+![Fabric Warehouse Issue](resources/fabric-adventureworks-warehouse-issue.png "AdventureWorks PySpark Direct Write to Warehouse Issue in Microsoft Fabric")
+**Fabric Warehouse Issue -- PySpark and Warehouse**
 
 In the Medallion Architecture, the **_SILVER_** layer is where data undergoes cleaning, validation, and transformation to create a more refined and consistent dataset. This layer is crucial for ensuring data quality and reliability, making it suitable for business intelligence and machine learning applications. The specific details for this project are as follows:
 - Converts text strings to binary format
@@ -87,7 +90,7 @@ In the Medallion Architecture, the **_SILVER_** layer is where data undergoes cl
 - Performs data type conversion
 - Executes nullable transformations
 
-The `DimEmployee` table as viwed in the Microsoft Fabric database explorer view displays some examples of the the successful column transformations:
+The `DimEmployee` table in the Microsoft Fabric database explorer view displays some examples of the the successful column transformations:
 
 ![Fabric AdventureWorks Database Explorer](resources/fabric-adventureworks-database-explorer.png "AdventureWorks SQL Database Example Column Transformations in Microsoft Fabric")
 **Fabric AdventureWorks SQL Database Explorer**
@@ -114,13 +117,19 @@ The final outcome of this phase will be a fully populated star-schema modeled da
 **Fabric AdventureWorks Warehouse -- Star-Schema Data Model**
 
 ## Phase 3 -- Silver to Gold
-> Coming soon!
-
 ### Step 3.1
 Create the `SQL Database` that will serve as the **_GOLD_** layer; I called mine "AdventureWorks_Database".
 
 ### Step 3.2
-Import the `Notebook` named `"Process Silver to Gold.ipynb"`, located in the `"notebooks"` folder, into your workspace and run it to load the **_GOLD_** layer tables.
+Import the `Notebook` named `"Process Silver to Gold.ipynb"`, located in the `"notebooks"` folder, into your workspace and run it to load the **_GOLD_** layer tables. The code reads each table from the `Warehouse` and performs the required business-level requirements to transforms the files. In the case of AdventureWorks, this is a simple process that executes the following logic:
+
+- Generate a unique name for each row in tables containing a binary image column
+- Write binary image columns into files stored in the `Lakehouse`
+- Add text columns that reference these files through a URL
+- Remove the binary data column
+- Perform data type conversion
+
+The transformed tables are then written to the `SQL Database` in the **_GOLD_** layer via an JDBC connection.
 
 ### Step 3.3
 We must now create the primary and foreign key relationships in the **_GOLD_** layer to create the star-schema model required for analytical reporting. This model works best with the Power BI component used in our AdventureWorks Fabric Architecture.
