@@ -4,35 +4,48 @@ Demonstrates a best practice approach for building a Microsoft Fabric Medallion 
 
 The project uses the new Microsoft Fabric Task Flow, a powerful feature that streamlines data workflows, helping organizations manage and automate their data processes more efficiently. Microsoft Fabric provides a built-in template for creating a Medallion Architecture, which simplifies the process of designing and implementing a structured data lakehouse. This template follows the Bronze, Silver, and Gold layer approach, ensuring data is efficiently ingested, transformed, and curated for analytics.
 
-![Fabric AdventureWorks Architecture](resources/fabric-adventureworks-taskflow.png "The Medallion taskflow in Microsoft Fabric")
+![Fabric AdventureWorks Architecture](resources/fabric-adventureworks-taskflow.png "The Medallion task flow in Microsoft Fabric")
 **Fabric AdventureWorks Task Flow -- Medallion Architecture**
 
 ## Prerequisites
 
-In order to leverage this solution, you'll need a Microsoft Fabric capacity (F2 or higher) and a Power BI licence (Pro or PPU).
+In order to leverage this solution, you'll need a Microsoft Fabric capacity (F2 or higher) and a Power BI license (Pro or PPU).
 
 ## Architecture
 
-The intent of this project is to illustrate a best practice approach to build a Medallion Architecture in Microsoft Fabric by using a different fit-for-purpose component for each layer. The `Lakehouse` is used for raw data in the **_BRONZE_** layer, where each attribute is a string to ensure every row is ingested without error.
+The intent of this project is to illustrate a best practice approach to build a Medallion Architecture in Microsoft Fabric. It is designed to leverage specific fit-for-purpose components for each layer of the architecture. This project defines a reference architecture which serves serves as a blueprint for implementing a proven solution design. It provides a standardized framework that others can adopt and adapt, reducing ambiguity and accelerating implementation. In the context of Microsoft Fabric, this reference architecture helps teams align on best practices for data ingestion, transformation, and analytics across the platform’s integrated components.
 
-A `Warehouse` hosts the **_SILVER_** layer with the data model needed to meet the business requirements. It was chosen over a `Lakehouse` for the following reasons;
+In this repository you will find a demonstration of the Medallion Architecture pattern—**_BRONZE_**, **_SILVER_**, and **_GOLD_** layers—using Microsoft Fabric’s `Lakehouse`, `Warehouse`, and `SQL Database` respectively. Each layer is purposefully designed to optimize data quality, performance, and usability. By showcasing how to ingest raw CSV files, transform them through PySpark notebooks and pipelines, and expose curated data products via semantic models, the project offers a hands-on, working example that others can replicate or extend.
 
-1. Supports indexing for faster queries.
-1. Strong schema enforcement, with SQL to create primary and foreign keys.
-1. High concurrency, optimized for BI workloads needed for operational reporting.
-1. Works better with Power BI.
-
-Finally, the **_GOLD_** layer utilizes `SQL Database` because it supports the richest set of SQL language and development capabities (e.g., stored procedures, user-defined functions, etc). The `Semantic model` artifacts are built from the database to create a data mesh design and expose information as data products. This approach allows for reusable models for various users and business domains, enabling more fine-grained security, governance, and self-service reporting.
+The business value of this approach is clear: it enables scalable, governed, and reusable data products that support self-service analytics and operational reporting. Organizations benefit from faster time-to-insight, improved data reliability, and a modular architecture that can evolve with changing needs. This reference implementation helps bridge the gap between technical design and business outcomes, making Microsoft Fabric adoption more accessible and impactful.
 
 ![Fabric AdventureWorks Architecture](resources/fabric-adventureworks-architecture.png "The Medallion architecture pattern implemented in Microsoft Fabric")
 **Fabric AdventureWorks Architecture**
+
+### Rationale for Architectural Decisions
+The `Lakehouse` is used for the **_BRONZE_** layer because of its schema flexibility and raw data preservation for structured, semi-structured and unstructured data.​
+- Offers schema-agnostic ingestion, ideal for raw vendor data.​
+- Using StringType avoids ingestion failures due to malformed or unexpected values.​
+- Supports append-only, immutable storage, aligning with audit and lineage best practices.
+
+A `Warehouse` hosts the **_SILVER_** layer to support the data modeling features needed to meet the business requirements.​
+- Supports indexing for faster queries.​
+- Strong schema enforcement, with SQL to create primary and foreign keys to support referential integrity and dimensional modeling.​
+- High concurrency, optimized for BI workloads needed for operational reporting on key data engineering processes.​
+- Better integration with Power BI for semantic modeling and performance optimization.​
+
+The **_GOLD_** layer utilizes `SQL Database` because it supports the richest set of SQL language and development capabilities (e.g., stored procedures, user-defined functions, etc.).​
+- Fast performance w/o refresh delays -- data is automatically replicated in near real-time to OneLake and converted to Delta Parquet, then read in Direct Lake mode.​
+- Enables self-service reporting by creating Semantic models as reusable data products for business user consumption.​
+- More fine-grained security and data masking capabilities.
+
 
 ## Phase 1 -- Raw to Bronze
 
 ### Step 1.1
 Create a `Workspace` for the project; I called mine "AdventureWorks Dev". Many of us struggle with naming conventions and standards. You don't want the name too long as it quickly gets truncated on the right-side by the UI.
 
-We do need separate workspaces for dev, test and prod. Ideally, the best practice is to have separate workspaces for data and reports as well; this allows for more fine-grained access control required by large enterprises. The data workspaces can be further sepated by layer. To keep things simple whill still demonstrating the key concepts, I choose just to have a single workspace for development.
+We do need separate workspaces for dev, test and prod. Ideally, the best practice is to have separate workspaces for data and reports as well; this allows for more fine-grained access control required by large enterprises. The data workspaces can be further separated by layer. To keep things simple while still demonstrating the key concepts, I choose just to have a single workspace for development.
 
 ### Step 1.2
 Create the `Lakehouse` that will serve as the **_BRONZE_** layer; I called mine "AdventureWorks_Lakehouse". Create a folder named "bronze" (the layer) and a subfolder named "warehouse" (the application).
@@ -45,7 +58,7 @@ Download the CSV files from the [Microsoft samples GitHub](https://github.com/mi
 DimAccount.csv: text/plain; charset=utf-16le
 ```
 
-The issue was fixed by converting all the CSV files to UTF-8. A bash shell script is included in this repo for future conversions, if necessay. An OS conversion program was used and is the key to the script execution; please check if is avaialbe on your OS or use an equivelent one:
+The issue was fixed by converting all the CSV files to UTF-8. A bash shell script is included in this repo for future conversions, if necessary. An OS conversion program was used and is the key to the script execution; please check if is available on your OS or use an equivalent one:
 
 ```
 # Convert the file from UTF-16LE to UTF-8 using iconv
@@ -57,12 +70,12 @@ I saved you the pain of this step, so you can simply upload the converted, UTF-8
 ### Step 1.4
 In most real-wold scenarios, this step will not be necessary. It is only required when the source data does not have headers. Why did Microsoft extract the data without specifying the column names? Who knows! 
 
-In rare cases, the data provider may suppy separate metadata files that describe the data files. This the case here, so you need to get the CREATE TABLE SQL from the Microsoft samples project, one per data file.
+In rare cases, the data provider may supply separate metadata files that describe the data files. This the case here, so you need to get the CREATE TABLE SQL from the Microsoft samples project, one per data file.
 
 Again I will save you this step, just upload the `.sql` files from this repo to the "warehouse" folder in your Lakehouse.
 
 ### Step 1.5
-We are now ready to load the data into the `Lakehouse`. For this pupose, we use a `Notebook` named `"Process Raw to Bronze.ipynb"` which is located in the `"notebooks"` folder. It uses PySpark to read the the text CSV-formatted files into dataframes, deriving the schema from the correspongig `.sql` file. Since this is raw data, we do not want to discard rows that have invalid values (e.g., a character in a numeric field). Therefore, the schema configures all columns as `String()` data types.
+We are now ready to load the data into the `Lakehouse`. For this purpose, we use a `Notebook` named `"Process Raw to Bronze.ipynb"` which is located in the `"notebooks"` folder. It uses PySpark to read the the text CSV-formatted files into dataframes, deriving the schema from the corresponding `.sql` file. Since this is raw data, we do not want to discard rows that have invalid values (e.g., a character in a numeric field). Therefore, the schema configures all columns as `String()` data types.
 
 Import the `Notebook` in your workspace and run it to load the **_BRONZE_** layer tables.
 
@@ -78,7 +91,7 @@ The code is provided for you in this repo. Open the `SQL Endpoint` view, create 
 ### Step 2.3
 Import the `Notebook` named `"Process Bronze to Silver.ipynb"`, located in the `"notebooks"` folder, into your workspace and run it to load the **_SILVER_** layer tables.
 
-> NOTE: There seems to be the issue '403 Forbibben' writing direct to the `Warehouse` from PySpark connected to a `Lakehouse`. I suspect there may be a support constraint with PySpark (see image below). I had to develop a workaround to write transient tables (prefixed `slv_`) in the `Lakehouse`. This forced an extra step (see below) to get all data into the **_SILVER_** layer.
+> NOTE: There seems to be the issue '403 Forbidden' writing direct to the `Warehouse` from PySpark connected to a `Lakehouse`. I suspect there may be a support constraint with PySpark (see image below). I had to develop a workaround to write transient tables (prefixed `slv_`) in the `Lakehouse`. This forced an extra step (see below) to get all data into the **_SILVER_** layer.
 
 ![Fabric Warehouse Issue](resources/fabric-adventureworks-warehouse-issue.png "AdventureWorks PySpark Direct Write to Warehouse Issue in Microsoft Fabric")
 **Fabric Warehouse Issue -- PySpark and Warehouse**
@@ -100,7 +113,7 @@ A `Data pipeline` named `Copy Bronze to Silver` was developed which contains thr
 
 All the code for this step is included in this repo and can be imported into your workspace and executed to perform the required data processing. The following diagram illustrates the flow:
 
-![Fabric AdventureWorks Data Pipline](resources/fabric-adventureworks-data-pipeline.png "AdventureWorks Data Pipeline Flow in Microsoft Fabric")
+![Fabric AdventureWorks Data Pipeline](resources/fabric-adventureworks-data-pipeline.png "AdventureWorks Data Pipeline Flow in Microsoft Fabric")
 **Fabric AdventureWorks Data Pipeline Flow**
 
 ### Step 2.5
@@ -140,16 +153,16 @@ The code is provided for you in this repo. Open the `SQL Endpoint` view, create 
 It is also important to ensure the data quality of this business-ready dataset in terms of "required" fields. This is accomplish by defining the "nullable" database constraint. Open the `SQL Endpoint` view, create a new SQL Query, copy and paste the script in the `"sql/database"` folder named `"Add Database Not Null Constraints.sql"` , and finally execute each to create the constraints.
 
 ### Step 3.5
-The business requirements specified severial specialized combinations of data entities in order to easiliy generate reports. This is accomplish by defining "views" of the data, which also need a few calculated columns. The code is provided for you in this repo. Open the `SQL Endpoint` view, create 2 new SQL Queries, copy and paste the scripts in the `"sql/database"` folder, the first named `"Create Database User-Defined Functions.sql"`and the second named `"Create Database Views.sql"`, and finally execute each to create the functions for calculated columns and the views which reference them.
+The business requirements specified several specialized combinations of data entities in order to easily generate reports. This is accomplish by defining "views" of the data, which also need a few calculated columns. The code is provided for you in this repo. Open the `SQL Endpoint` view, create 2 new SQL Queries, copy and paste the scripts in the `"sql/database"` folder, the first named `"Create Database User-Defined Functions.sql"`and the second named `"Create Database Views.sql"`, and finally execute each to create the functions for calculated columns and the views which reference them.
 
 ### Step 3.6 (workaround)
 There appears to be a Microsoft Fabric issue displaying images via URLs to `Lakehouse` files in OneLake via Power BI. As a workaround, I developed a process that creates data model "extension" tables that add a `SharePoint` based URL where the images were copied manually.
 
-Although this step should be unnecessary, it does illustatre a valid real-world scenario where specialized tables, most always dimensions, are added directly to the **_GOLD_** layer to support a required business classification or if the data is sourced from a well-maintained system.
+Although this step should be unnecessary, it does illustrate a valid real-world scenario where specialized tables, most always dimensions, are added directly to the **_GOLD_** layer to support a required business classification or if the data is sourced from a well-maintained system.
 
-Import the `Dataflow (Gen2)` into yourworkspace and run it to create the three dimension tables that point to images and used for employyee, product, and territory data.
+Import the `Dataflow (Gen2)` into your workspace and run it to create the three dimension tables that point to images and used for employee, product, and territory data.
 
-> NOTE: You **must edit** the code first to point to your specific site where the images werte copied.
+> NOTE: You **must edit** the code first to point to your specific site where the images were copied.
 
 ### Step 3.7
 Now it is time to build the `Semantic model` objects that create the **data products** for the AdventureWorks data mesh architecture. I have done this step for you in this repo, creating three domain models as `Power BI Projects (.pbip)` files in the `powerbi` folder.:
@@ -176,7 +189,7 @@ Here we develop a starter set of `Report` artifacts to get the creativity of ide
 
 
 ## Conclusion
-I hope you devive value out of this project. Feel free to contact me if you want to create a `fork` and collaborate on further deveopment. I believe I've accomplished the following:
+I hope you derive value out of this project. Feel free to contact me if you want to create a `fork` and collaborate on further development. I believe I've accomplished the following:
 
 - Knowledge Sharing & Community Learning – Provides real-world examples, best practices, and reduces the learning curve for Microsoft Fabric users.
 - Accelerating Adoption & Implementation – Offers ready-to-use templates and patterns for faster prototyping and deployment.
