@@ -39,6 +39,12 @@ The **_GOLD_** layer utilizes `SQL Database` because it supports the richest set
 - Enables self-service reporting by creating Semantic models as reusable data products for business user consumption.​
 - More fine-grained security and data masking capabilities.
 
+The **_CONTROL_** plane utilizes `Pipelines` while the **_COMPUTE_** plane utilizes `Notebooks`. Pipelines in Fabric are intentionally lightweight orchestration engines. They are not designed for distributed compute, high‑parallelism transformations, or Spark‑native operations. PySpark notebooks provide the scalable execution layer required for complex, high‑volume medallion workloads, while pipelines coordinate when and how those notebooks run. This separation is required because Fabric pipelines cannot safely or efficiently execute large-scale parallel Spark workloads on their own.
+- Pipelines are not a distributed compute engine (e.g., shuffle operations, partition pruning, distributed joins)
+- Pipelines cannot safely orchestrate high‑parallel Spark workloads (i.e., "too many concurrent Spark sessions" issue)
+- PySpark notebooks can orchestrate parallelism internally
+- Medallion architecture requires Spark-native capabilities (e.g., delta lake MERGE, partitioning)
+- Pipelines excel at orchestration—not computation (e.g., dependency management, parameter passing)
 
 ## Phase 1 -- Raw to Bronze
 
